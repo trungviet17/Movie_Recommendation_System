@@ -1,1 +1,3 @@
-movie_recommendation
+movie_env
+Data\Raw_data
+__pycache__/
