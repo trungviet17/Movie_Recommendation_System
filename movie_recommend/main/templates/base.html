@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    
+    <body>
+
+        <div class="search-bar">
+        
+            <form class="search-form" action = "{% url 'main:search' %}" method = "post">
+            
+                {% csrf_token %}
+        
+                <input type="text" name="search" placeholder="Search">
+                <button class="btn-search" type="submit"> Search </button>
+        
+            </form>
+        
+        </div>
+
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
