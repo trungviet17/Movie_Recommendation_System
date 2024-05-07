@@ -8,10 +8,14 @@
             <h2>You search for {{search}}</h2>
             </br>
             {% if movies %}
-                {% for movie in movies % }
-                    <a  href = '{% url "main:recommend" %}'>{{ movie.title }} </a>
+                {% for movie in movies %}
+                    <p>
+
+                        <a href="{% url 'main:recommend' movie.id %}" > {{ movie.title }} </a>
+
+                    </p>
                     
-                {% endfor % }
+                {% endfor %}
             {% else %} 
                 <h2> No result </h2>
 

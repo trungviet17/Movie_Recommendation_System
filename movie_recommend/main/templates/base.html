@@ -2,9 +2,10 @@
 <html>
     
     <body>
-
-        <div class="search-bar">
         
+        <div class="search-bar">
+            <a href="{% url 'main:home' %}"> Home </a>
+            
             <form class="search-form" action = "{% url 'main:search' %}" method = "post">
             
                 {% csrf_token %}

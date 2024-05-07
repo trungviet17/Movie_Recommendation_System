@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+    <h1> {{ movie.title }} </h1>
+
+    <p>Overview :  {{ movie.overview }} </p>
+
+    <p>Released : {{ movie.released|date:"Y-m-d" }} </p>
+
+    <p>Genre : {{ movie.genre }} </p>
+    <p>Popularity : {{ movie.popularity }} </p>
+
+    <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' | add:movie.image }}">
+
+    <h2> Casts  </h2>
+
+    <div class="casts">
+        {% for cast in casts %}
+
+            <h3> {{ cast.name }} </h3>
+            <p>Date of birth : {{ cast.birthday | date:"Y-m-d" }}</p>
+            <img src="{{ 'https://media.themoviedb.org/t/p/w138_and_h175_face' | add:cast.image }}">
+
+            <p>Bio: {{ cast.bio }}</p>
+            
+
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}
