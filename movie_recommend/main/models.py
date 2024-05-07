@@ -11,10 +11,6 @@ class Cast(models.Model):
     birthday = models.DateTimeField()
     bio = models.TextField()
 
-
-
-
-
 class Movie(models.Model) : 
 
     title = models.CharField(max_length= 100)
