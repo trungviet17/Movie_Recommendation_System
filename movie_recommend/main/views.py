@@ -19,7 +19,7 @@ def search(request):
     if request.method == 'POST': 
         search = request.POST['search']
 
-        movies = Movie.objects.filter(title__contains = search)
+        movies = Movie.objects.filter(title__icontains = search)
 
         if movies != None : 
             return render(request, 'main/search.html', {'movies': movies, 'search' : search})
