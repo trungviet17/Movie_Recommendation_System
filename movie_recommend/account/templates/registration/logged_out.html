@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Logged out{% endblock %}
+
+{% block content %}
+
+  
+
+  
+  <!DOCTYPE html>
+  <html lang="en">
+    <head></head>
+    <body>
+      <link rel="stylesheet" href="{% static 'css\account\general.css' %}" />
+      <div class="outer_most">
+        <h1>Logged out</h1>
+        <p>
+          You have been successfully logged out.
+          You can <a href="{% url 'login' %}">log-in again</a>.
+        </p>
+      </div>
+    </body>
+  </html>
+{% endblock %}
