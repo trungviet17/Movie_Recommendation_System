@@ -1,3 +1,5 @@
 movie_env
 **/__pycache__/
 Data/Main_data
+__pycache__/
+movie_recommend\movie_recommend\__pycache__
