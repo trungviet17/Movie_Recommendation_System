@@ -13,7 +13,7 @@ class UserRegistrationForm(forms.ModelForm):
         fields  = ['username', 'first_name', 'email']
 
     """Hàm kiểm tra """
-    def clean_password(self): 
+    def clean_password2(self): 
         cd = self.cleaned_data
 
         if cd['password'] != cd['password2'] : raise forms.ValidationError('Password don\' match')
