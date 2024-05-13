@@ -20,6 +20,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
   <link rel= "stylesheet" type= "text/css" href= "{% static 'style.css' %}">
 
+  <script type="text/javascript">
+    var films = {{ suggestions|safe }};
+  </script>
+
 </head>
 
 <body id="content" style="font-family: 'Noto Sans JP', sans-serif;">

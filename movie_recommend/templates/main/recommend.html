@@ -51,8 +51,9 @@
 </div>
 <br/>
 	
-{% for name, details in cast_details.items() if not cast_details.hidden %}
-  <div class="modal fade" id="{{details[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+{% for name, details in cast_details.items %}
+  {% if not details.hidden %}
+  <div class="modal fade" id="{{details.0}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #e50914;color: white;">
@@ -63,13 +64,13 @@
         </div>
 
         <div class="modal-body">
-          <img class="profile-pic" src="{{details[1]}}" alt="{{name}} - profile" style="width: 250px;height:400px;border-radius: 10px;" />
+          <img class="profile-pic" src="{{details.1}}" alt="{{name}} - profile" style="width: 250px;height:400px;border-radius: 10px;" />
           <div style="margin-left: 20px">
-            <p><strong>Birthday:</strong> {{details[2]}} </p>
-            <p><strong>Place of Birth:</strong> {{details[3]}} </p>
+            <p><strong>Birthday:</strong> {{details.2}} </p>
+            <p><strong>Place of Birth:</strong> {{details.3}} </p>
             <p> 
               <p><strong>Biography:</strong><p>
-              {{details[4]}}
+              {{details.4}}
             </p>
           </div>
         </div>
@@ -79,8 +80,9 @@
       </div>
     </div>
   </div>
-  {% endfor %}
-  
+  {% endif %}
+{% endfor %}
+
   {% if casts|length > 1 %}
   <div class="movie" style="color: #E8E8E8;">
     	<center>
@@ -90,19 +92,23 @@
   </div>
 
   <div class="movie-content">
-        {% for name, details in casts.items() if not casts.hidden %}
-          <div class="castcard card" style="width: 15rem;" title="Click to know more about {{name}}" data-toggle="modal" data-target="#{{details[0]}}">
+    {% for name, details in cast_details.items %}
+      {% if not details.hidden %}
+          <div class="castcard card" style="width: 15rem;" title="Click to know more about {{name}}" data-toggle="modal" data-target="#{{details.0}}">
             <div class="imghvr">
-              <img class="card-img-top cast-img" id="{{details[0]}}" height="360" width="240" alt="{{name}} - profile" src="{{details[2]}}">
+              <img class="card-img-top cast-img" id="{{details.0}}" height="360" width="240" alt="{{name}} - profile" src="{{details.1}}">
               <figcaption class="fig">
                 <button class="card-btn btn btn-danger"> Know More </button>
               </figcaption>
             </div>
             <div class="card-body">
               <h5 class="card-title">{{name|title}}</h5>
-              <h5 class="card-title"><span style="color:#756969;font-size: 20px;">Character: {{details[1]|title}}</span></h5>
+              <h5 class="card-title"><span style="color:#756969;font-size: 20px;">
+                Character: NoInformation
+              </span></h5>
             </div>
           </div>
+      {% endif %}
       {% endfor %}
     </div>
 {% endif %}
@@ -120,20 +126,22 @@
             </thead>
     
             <tbody>
-		      {% for review, status in reviews.items() if not reviews.hidden %}
-		      <tr style="background-color:#e5091485;">
-              	  <td>{{review}}</td>
-	              <td><center>
-	                  {{status}} : 
-	                  {% if status =='Good' %}
-	                    &#128515;
-	                  {% else %}
-	                    &#128534;
-	                  {% endif %}
-	                </center>
-	              </td>
-          		</tr>
-      			{% endfor %}
+              {% for review, status in reviews.items %}
+              {% if not status.hidden %}
+                <tr style="background-color:#e5091485;">
+                  <td>{{review}}</td>
+                  <td><center>
+                      {{status}} : 
+                      {% if status == 'Good' %}
+                        &#128515;
+                      {% else %}
+                        &#128534;
+                      {% endif %}
+                    </center>
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}            
     		</tbody>
  		 </table>
     </div>
@@ -152,18 +160,20 @@
     </div>
 
     <div class="movie-content">
-      {% for poster, title in movie_cards.items() if not movie_cards.hidden %}
-        <div class="card" style="width: 15rem;" title="{{title}}" onclick="recommendcard(this)">
-          <div class="imghvr">
-            <img class="card-img-top" height="360" width="240" alt="{{title}} - poster" src={{poster}}>
-            <figcaption class="fig">
-              <button class="card-btn btn btn-danger"> Click Me </button>
-            </figcaption>
-           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{title|capitalize}}</h5>
-          </div>
-        </div>
+      {% for poster, title in movie_cards.items %}
+        {% if not movie_cards.hidden %}
+            <div class="card" style="width: 15rem;" title="{{title}}" onclick="recommendcard(this)">
+              <div class="imghvr">
+                <img class="card-img-top" height="360" width="240" alt="{{title}} - poster" src={{poster}}>
+                <figcaption class="fig">
+                  <button class="card-btn btn btn-danger"> Click Me </button>
+                </figcaption>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ title|title }}</h5>
+            </div>            
+            </div>
+        {% endif %}
     {% endfor %}
     </div>
 

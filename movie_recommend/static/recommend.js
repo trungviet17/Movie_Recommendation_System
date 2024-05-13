@@ -49,6 +49,7 @@ function load_details(my_api_key,title){
         $('.results').delay(1000).css('display','block');
         var movie_id = movie.results[0].id;
         var movie_title = movie.results[0].original_title;
+        console.log("check");
         movie_recs(movie_title,movie_id,my_api_key);
       }
     },
@@ -61,9 +62,10 @@ function load_details(my_api_key,title){
 
 // passing the movie name to get the similar movies from python's flask
 function movie_recs(movie_title,movie_id,my_api_key){
+  console.log("Calling movie_recs with movie title: " + movie_title);
   $.ajax({
     type:'POST',
-    url:"/similarity",
+    url:"similarity/",
     data:{'name':movie_title},
     success: function(recs){
       if(recs=="Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies"){
@@ -74,7 +76,13 @@ function movie_recs(movie_title,movie_id,my_api_key){
       else {
         $('.fail').css('display','none');
         $('.results').css('display','block');
-        var movie_arr = recs.split('---');
+        if (recs.hasOwnProperty('result')) {
+          var movie_arr = recs.result.split('---');
+        } else {
+          // Xử lý nếu recs không phải là một chuỗi JSON
+          console.error("Unexpected format of recs:", recs);
+          // Xử lý lỗi nếu có
+        }
         var arr = [];
         for(const movie in movie_arr){
           arr.push(movie_arr[movie]);
@@ -157,7 +165,7 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
   $.ajax({
     type:'POST',
     data:details,
-    url:"/recommend",
+    url:"recommend/",
     dataType: 'html',
     complete: function(){
       $("#loader").delay(500).fadeOut();

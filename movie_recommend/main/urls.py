@@ -7,7 +7,6 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.home, name='home'), 
-    path('search/', views.search, name='search'), 
-    # path('recommend/<int:movie_id>/', views.recommend, name='recommend'),
-    path('test/', views.test, name='test'),
+    path('similarity/', views.similarity, name='similarity'),
+    path('recommend/', views.recommend, name='recommend'),
 ]
