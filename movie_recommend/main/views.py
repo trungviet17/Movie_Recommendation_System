@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-@login_required
+# @login_required
 def home(request): 
     return render(request, 'main/home.html')
 
@@ -26,3 +26,5 @@ def search(request):
             return render(request, 'main/search.html', {'movies': movies, 'search' : search})
    
     return render(request, 'main/search.html', {})
+def test(request):
+    return render(request, 'main/recommend.html')
