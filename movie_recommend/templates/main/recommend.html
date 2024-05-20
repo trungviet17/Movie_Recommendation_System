@@ -28,28 +28,27 @@
 	    </center>
 	</div>
 	<br>
-
-<div id="mycontent">
-    <div id="mcontent">
-      <div class="poster-lg">
-        <img class="poster" style="border-radius: 40px;margin-left: 90px;" height="400" width="250" src={{poster}}>
+  <div id="mycontent">
+      <div id="mcontent">
+        <div class="poster-lg">
+          <img class="poster" style="border-radius: 40px;margin-left: 90px;" height="500" width="350" src={{poster}}>
+        </div>
+        <div class="poster-sm text-center">
+          <img class="poster" style="border-radius: 40px;margin-bottom: 5%;" height="500" width="350" src={{poster}}>
+        </div>
+        <div id="details">
+          <br/>
+          <h6 id="title" style="color:white;">TITLE: &nbsp;{{title}}</h6>
+          <h6 id="overview" style="color:white;max-width: 85%">OVERVIEW: <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{overview}}</h6>
+          <h6 id="vote_average" style="color:white;">RATING: &nbsp;{{vote_average}}/10 ({{vote_count}} votes)</h6>
+          <h6 id="genres" style="color:white;">GENRE: &nbsp;{{genres}}</h6>
+          <h6 id="date" style="color:white;">RELEASE DATE: &nbsp;{{release_date}}</h6>
+          <h6 id="runtime" style="color:white;">RUNTIME: &nbsp;{{runtime}}</h6>
+          <h6 id="status" style="color:white;">STATUS: &nbsp;{{status}}</h6>
+        </div>
       </div>
-      <div class="poster-sm text-center">
-        <img class="poster" style="border-radius: 40px;margin-bottom: 5%;" height="400" width="250" src={{poster}}>
-      </div>
-      <div id="details">
-        <br/>
-        <h6 id="title" style="color:white;">TITLE: &nbsp;{{title}}</h6>
-        <h6 id="overview" style="color:white;max-width: 85%">OVERVIEW: <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{overview}}</h6>
-        <h6 id="vote_average" style="color:white;">RATING: &nbsp;{{vote_average}}/10 ({{vote_count}} votes)</h6>
-        <h6 id="genres" style="color:white;">GENRE: &nbsp;{{genres}}</h6>
-        <h6 id="date" style="color:white;">RELEASE DATE: &nbsp;{{release_date}}</h6>
-        <h6 id="runtime" style="color:white;">RUNTIME: &nbsp;{{runtime}}</h6>
-        <h6 id="status" style="color:white;">STATUS: &nbsp;{{status}}</h6>
-      </div>
-    </div>
-</div>
-<br/>
+  </div>
+  <br/>
 	
 {% for name, details in cast_details.items %}
   {% if not details.hidden %}
@@ -83,7 +82,7 @@
   {% endif %}
 {% endfor %}
 
-  {% if casts|length > 1 %}
+{% if casts|length > 1 %}
   <div class="movie" style="color: #E8E8E8;">
     	<center>
 		<h3>TOP CAST</h3>
@@ -94,9 +93,15 @@
   <div class="movie-content">
     {% for name, details in cast_details.items %}
       {% if not details.hidden %}
-          <div class="castcard card" style="width: 15rem;" title="Click to know more about {{name}}" data-toggle="modal" data-target="#{{details.0}}">
+          <div class="castcard card" style="width: 15rem; border-radius: 40px;" title="Click to know more about {{name}}" data-toggle="modal" data-target="#{{details.0}}">
             <div class="imghvr">
-              <img class="card-img-top cast-img" id="{{details.0}}" height="360" width="240" alt="{{name}} - profile" src="{{details.1}}">
+              <!-- <img class="card-img-top cast-img" id="{{details.0}}" height="360" width="240" alt="{{name}} - profile" src="{{details.1}}"> -->
+              <div class="poster-lg">
+                <img class="card-img-top cast-img" style="border-radius: 40px;" height="360" width="240" src={{details.1}}>
+              </div>
+              <div class="poster-sm text-center">
+                  <img class="card-img-top cast-img" style="border-radius: 40px; margin-bottom: 5%;" height="360" width="240" src={{details.1}}>
+              </div>
               <figcaption class="fig">
                 <button class="card-btn btn btn-danger"> Know More </button>
               </figcaption>
@@ -110,10 +115,10 @@
           </div>
       {% endif %}
       {% endfor %}
-    </div>
+  </div>
 {% endif %}
 
-  <center>
+  <!-- <center>
     {% if reviews %}
     <h2 style="color:white">USER REVIEWS</h2>
      <div class="col-md-12" style="margin: 0 auto; margin-top:25px;">
@@ -150,36 +155,34 @@
       <h1 style="color:white"> This movie is not released yet. Stay tuned! </h1>
     </div>
     {% endif %}
-  </center>
-
-      {% if movie_cards|length > 1 %}
-
-
+  </center> -->
+    {% if movie_cards|length > 1 %}
       <div class="movie" style="color: #E8E8E8;">
       <center><h3>RECOMMENDED MOVIES FOR YOU</h3><h5>(Click any of the movies to get recommendation)</h5></center>
-    </div>
-
-    <div class="movie-content">
-      {% for poster, title in movie_cards.items %}
-        {% if not movie_cards.hidden %}
-            <div class="card" style="width: 15rem;" title="{{title}}" onclick="recommendcard(this)">
-              <div class="imghvr">
-                <img class="card-img-top" height="360" width="240" alt="{{title}} - poster" src={{poster}}>
-                <figcaption class="fig">
-                  <button class="card-btn btn btn-danger"> Click Me </button>
-                </figcaption>
+      </div>
+      <div class="movie-content">
+        {% for poster, title in movie_cards.items %}
+          {% if not movie_cards.hidden %}
+              <div class="card" style="width: 15rem; border-radius: 40px;" title="{{title}}" onclick="recommendcard(this)">
+                  <div class="imghvr">
+                      <div class="poster-lg">
+                          <img class="poster" style="border-radius: 40px;" height="360" width="240" src={{poster}}>
+                      </div>
+                      <div class="poster-sm text-center">
+                          <img class="poster" style="border-radius: 40px; margin-bottom: 5%;" height="360" width="240" src={{poster}}>
+                      </div>
+                      <figcaption class="fig">
+                          <button class="card-btn btn btn-danger"> Watch Now </button>
+                      </figcaption>
+                  </div>
+                  <div class="card-body">
+                      <h5 class="card-title" style="text-align: center;">{{ title|title }}</h5>
+                  </div>            
               </div>
-              <div class="card-body">
-                <h5 class="card-title">{{ title|title }}</h5>
-            </div>            
-            </div>
-        {% endif %}
-    {% endfor %}
-    </div>
-
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endif %}
-
-    
     </div>
   </div>
   

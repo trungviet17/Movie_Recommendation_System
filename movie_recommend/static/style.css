@@ -24,9 +24,20 @@
 }
 
 #content {
-	background-image: url("../static/image.jpg");
-	background-color: #181818;
-	font-family: 'Noto Sans JP', sans-serif;
+    background-image: url("../static/image.jpg");
+    background-color: #181818;
+    font-family: 'Noto Sans JP', sans-serif;
+    /* set background-image auto move like gif */
+    animation: moveBackground 10s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
 }
 
 #details {
@@ -44,7 +55,7 @@
 
 h1 {
     font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #e50914;
+    color: #04ffff;
     font-weight: bold;
     margin-top: 30px;
     text-shadow: #000000 0px 0px 13px;
@@ -103,9 +114,9 @@ h6 {
 		width: 100%;
 		height: 100%;
 		background-image: url("../static/loader.gif");
-		background-size: 40%;
+		background-size: 200%;
 		background-position: 50% 50%;
-		background-color: rgba(255, 255, 255, 1);
+		background-color: rgb(229, 239, 241);
 		background-repeat: no-repeat;
 		-webkit-transition: background-image 0.2s ease-in-out;
 		transition: background-image 0.2s ease-in-out;
