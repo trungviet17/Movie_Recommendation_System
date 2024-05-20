@@ -1,26 +1,19 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-import numpy as np
 import pandas as pd
-from flask import Flask, render_template, request
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import json
-import bs4 as bs
-import urllib.request
 import pickle
-import requests
-import lxml
 
 # load the nlp model and tfidf vectorizer from disk
-filename = '/workspaces/Movie_Recommendation_System/movie_recommend/main/model/nlp_model.pkl'
+filename = 'main/model/nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
-vectorizer = pickle.load(open('/workspaces/Movie_Recommendation_System/movie_recommend/main/model/tranform.pkl','rb'))
+vectorizer = pickle.load(open('main/model/tranform.pkl','rb'))
 
 
 def create_similarity():
-    data = pd.read_csv('/workspaces/Movie_Recommendation_System/main_data.csv')
+    data = pd.read_csv('main/model/main_data.csv')
     # creating a count matrix
     cv = CountVectorizer()
     count_matrix = cv.fit_transform(data['comb'])
@@ -56,7 +49,7 @@ def convert_to_list(my_list):
     return my_list
 
 def get_suggestions():
-    data = pd.read_csv('/workspaces/Movie_Recommendation_System/main_data.csv')
+    data = pd.read_csv('main/model/main_data.csv')
     return list(data['movie_title'].str.capitalize())
 
 def home(request):
